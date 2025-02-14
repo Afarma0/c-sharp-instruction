@@ -1,4 +1,4 @@
-﻿namespace PersonManager_Inheritance
+﻿namespace ConsoleApp2
 {
     internal class Program
     {

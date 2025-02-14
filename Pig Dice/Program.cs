@@ -41,6 +41,7 @@ namespace Pig_Dice
                     choice = MyConsole.PromptReqString("Again? (y/n): ", "y", "n");
                     //compound way to do an if statement
                 }
+            }
                 //while choice
                 //prompt nbrGames:int
                 //highScore = 0
@@ -52,7 +53,7 @@ namespace Pig_Dice
 
 
                 MyConsole.PrintLine("Bye pig");
-            }
+            
         }
     }
-}
+

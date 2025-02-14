@@ -3,15 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>PersonManager_Inheritance</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Reference Include="ConsoleLibrary">
-      <HintPath>..\ConsoleLibrary\obj\Release\net8.0\ConsoleLibrary.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
 </Project>
