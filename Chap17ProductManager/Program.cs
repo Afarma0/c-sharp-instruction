@@ -122,5 +122,77 @@ namespace Chap17ProductManager
             MyConsole.PrintLine("0) Exit");
             MyConsole.PrintLine("3) Delete");
         }
+        public class Product
+        {
+            public string Code { get; set; }
+            public string Description { get; set; }
+            public decimal Price { get; set; }
+
+            public Product(string code, string description, decimal price)
+            {
+                this.Description = description;
+                this.Code = code;
+                this.Price = price;
+            }
+            public override string ToString()
+            {
+                return $"Product: ({Code}) - {Description} @ {Price:c}";
+            }
+        }
+    }
+    internal class ProductDB
+    {
+        private const string Dir = @"C:\C#\Files\";
+        private const string Path = Dir + "Products.txt";
+        private const string Sep = "|";
+
+        public static void SaveProducts(List<Product> products)
+        {
+            using StreamWriter writer = new StreamWriter(new FileStream(Path, FileMode.Create, FileAccess.Write));
+            //using eliminates the need in C#  for writer.clsoe()
+            foreach (Product product in products)
+            {
+                writer.Write(product.Code + Sep);
+                writer.Write(product.Description + Sep);
+                writer.Write(product.Price);
+
+
+            }
+
+        }
+        public static List<Product> GetProducts()
+        {
+            using StreamReader reader = new StreamReader(new FileStream(Path, FileMode.Open, FileAccess.Read));
+            List<Product> products = new List<Product>();
+            while (reader.Peek() != -1)
+            {
+                string row = reader.ReadLine();
+                string[] columns = row.Split(Sep);
+
+                if (columns.Length == 3)
+                {
+                    string code = columns[0];
+                    string description = columns[1];
+                    decimal price = Decimal.Parse(columns[2]);
+                    Product p = new Product(code, description, price);
+                    products.Add(p);
+                }
+            }
+            return products;
+        }
+
+
+        public static void DeleteProductByCode(List<Product> products, string codeToDelete)
+        {
+            // Find the product in the list
+            Product productToDelete = products.FirstOrDefault(p => p.Code == codeToDelete);
+
+            if (productToDelete != null)
+            {
+                // Remove the product
+                products.Remove(productToDelete);
+                SaveProducts(products); // Update the file with the new list
+            }
+        }
     }
 }

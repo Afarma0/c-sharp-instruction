@@ -123,7 +123,7 @@ namespace ConsoleLibrary
             Console.Write(msg);
         }
 
-        public static void PrintLine(string msg)
+        public static void PrintLine(string msg = "")
         {
             Console.WriteLine(msg);
         }
